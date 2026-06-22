@@ -1,0 +1,7 @@
+﻿21.06.2026 01:38:44 - Wrong Card Number
+21.06.2026 01:41:56 - Application Start Successfully
+21.06.2026 01:42:09 - Application Ends Successfully
+21.06.2026 02:32:59 - Application Start Successfully
+21.06.2026 02:33:08 - Application Ends Successfully
+21.06.2026 02:33:38 - Application Start Successfully
+21.06.2026 02:33:47 - Application Ends Successfully
