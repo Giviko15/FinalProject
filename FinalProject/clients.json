@@ -2,51 +2,77 @@
   {
     "CardNumber": "1112223334445555",
     "CardDate": "11.11.2026 00:00:00",
-    "PinCode": "1155"
+    "PinCode": "1155",
+    "Balance": 0,
+    "Transactions": []
   },
   {
     "CardNumber": "1112234455667777",
     "CardDate": "11.11.2026 00:00:00",
-    "PinCode": "5555"
+    "PinCode": "5555",
+    "Balance": 0,
+    "Transactions": []
   },
   {
     "CardNumber": "1234123412341234",
-    "CardDate": "11.11.2029 00:00:00",
-    "PinCode": "1111"
+    "CardDate": "11.11.2026 00:00:00",
+    "PinCode": "1515",
+    "Balance": 1500,
+    "Transactions": [
+      {
+        "Type": "Deposit",
+        "Amount": 1500,
+        "Date": "2026-06-22T22:29:41.6297093+04:00"
+      }
+    ]
   },
   {
     "CardNumber": "1231231231231233",
     "CardDate": "11.11.2026 00:00:00",
-    "PinCode": "1123"
+    "PinCode": "1123",
+    "Balance": 0,
+    "Transactions": []
   },
   {
     "CardNumber": "1231231231231233",
     "CardDate": "11.11.2028 00:00:00",
-    "PinCode": "1122"
+    "PinCode": "1122",
+    "Balance": 0,
+    "Transactions": []
   },
   {
     "CardNumber": "1111111111111111",
     "CardDate": "11.11.2026 00:00:00",
-    "PinCode": "1111"
+    "PinCode": "1111",
+    "Balance": 0,
+    "Transactions": []
   },
   {
     "CardNumber": "1231231231231233",
     "CardDate": "11.11.2026 00:00:00",
-    "PinCode": "1111"
+    "PinCode": "1111",
+    "Balance": 0,
+    "Transactions": []
   },
   {
     "CardNumber": "1231231231231233",
     "CardDate": "11.11.2026 00:00:00",
-    "PinCode": "1111"
+    "PinCode": "1111",
+    "Balance": 0,
+    "Transactions": []
   },
   {
     "CardNumber": "1515151515151515",
     "CardDate": "11.11.2026 00:00:00",
-    "PinCode": "2233"
+    "PinCode": "2233",
+    "Balance": 0,
+    "Transactions": []
   },
   {
     "CardNumber": "1231231231231232",
     "CardDate": "11.11.2026 00:00:00",
-    "PinCode": "2211"
+    "PinCode": "2211",
+    "Balance": 0,
+    "Transactions": []
   }
 ]

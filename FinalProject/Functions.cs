@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Transactions;
+using static FinalProject.ATMCheck;
 
 namespace FinalProject
 {
@@ -16,10 +17,16 @@ namespace FinalProject
     //}
     internal class Functions
     {
-      
+        private Client currentClient;
+        public Functions(Client currentClient)
+        {
+            this.currentClient = currentClient;
+
+        }
+
         public void ChooseOperation()
         {
-           
+
             Console.WriteLine("Select the desired operation: ");
             Console.WriteLine("1. Check Balance");
             Console.WriteLine("2. Withdraw");
@@ -43,10 +50,10 @@ namespace FinalProject
             {
                 Withdraw();
             }
-            else if (choose == 3)
-            {
-                last5transaction();
-            }
+            //else if (choose == 3)
+            //{
+            //    last5transaction();
+            //}
             else if (choose == 5)
             {
                 ChangePin();
@@ -60,51 +67,66 @@ namespace FinalProject
         }
 
 
-        private decimal balance;
+
 
 
         public void Deposit()
+
         {
-            
+
+            Console.WriteLine("sheiyvane depoziti ");
+
+            var depositbalance = decimal.Parse(Console.ReadLine());
+
+            if (depositbalance > 0)
+
             {
 
-            }
-            Console.WriteLine("Enter amount to deposit: ");
-            var depositbalance = decimal.Parse(Console.ReadLine());
-            if (depositbalance > 0)
-            {
-                balance += depositbalance;
-                Console.WriteLine("Deposit Successful. Your Balance is :" + balance);
-                
+                currentClient.Balance += depositbalance;
+
+                currentClient.Transactions.Add(new ATMCheck.Transaction
+
+                {
+
+                    Type = "Deposit",
+
+                    Amount = depositbalance,
+
+                    Date = DateTime.Now
+
+                });
+
+                Console.WriteLine("degericxa dzmaoo. fuli gaqvs amdeni: " + currentClient.Balance);
+
+                SaveCurrentClient();
+
             }
 
         }
         public void CheckBalance()
         {
 
-            Console.WriteLine("Your Balance is :" + balance);
-        } 
-        //    transactions.Add(new Transaction
-        //    {
-        //        Type = "CheckBalance",
-        //        Amount = (int)balance,
-        //        Date = DateTime.Now,
-        //    });
-        //}
+            Console.WriteLine("Your Balance is :" + currentClient.Balance);
+        }
+
         public void Withdraw()
         {
             Console.WriteLine("Enter amount");
             var withdrawamount = decimal.Parse(Console.ReadLine());
-            if (balance == 0 && balance < withdrawamount)
+            if (currentClient.Balance < withdrawamount)
             {
                 Console.WriteLine("Wrong Amount");
+                return;
             }
-            if (balance > 0)
+            currentClient.Balance -= withdrawamount;
+            currentClient.Transactions.Add(new ATMCheck.Transaction
             {
-                Console.WriteLine("Your balance is : " + (balance - withdrawamount));
-
-            }
-
+                Type = "Withdraw",
+                Amount = withdrawamount,
+                Date = DateTime.Now
+            });
+            Console.WriteLine("Your balance is: " + currentClient.Balance);
+            SaveCurrentClient();
         }
         public void ChangePin()
         {
@@ -117,7 +139,7 @@ namespace FinalProject
         {
             decimal usdRate = 2.7m;
             decimal eurRate = 3.0m;
-           
+
             Console.WriteLine("Choose conversion type : 1.GEL TO USD 2.GEL TO EUR");
             var chooseconversion = Console.ReadLine();
             Console.WriteLine("Enter Amount in GEL");
@@ -128,19 +150,27 @@ namespace FinalProject
             {
                 Console.WriteLine($"You got USD: {usd}");
             }
-       else if (chooseconversion == "2")
+            else if (chooseconversion == "2")
             {
                 Console.WriteLine($"You got EUR: {eur}");
             }
         }
-        public void last5transaction ()
+        public void last5transaction()
         {
-            var trlist = transactions;
-            foreach (var tr in trlist)
+            var last5 = currentClient.Transactions.TakeLast(5);
+            foreach (var tr in last5)
             {
-                Console.WriteLine(trlist);
+                Console.WriteLine($"{tr.Date}: {tr.Type} {tr.Amount}");
             }
-            
+
+        }
+        private void SaveCurrentClient()
+        {
+            var all = ATMCheck.LoadClients();
+            var index = all.FindIndex(c => c.CardNumber == currentClient.CardNumber);
+            if (index >= 0) all[index] = currentClient;
+            else all.Add(currentClient);
+            ATMCheck.SaveClients(all);
         }
     }
 }

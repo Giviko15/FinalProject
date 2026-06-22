@@ -7,7 +7,7 @@ using System.Transactions;
 
 namespace FinalProject
 {
-    internal class ATMCheck
+    public class ATMCheck
     {
 
         public class Client
@@ -15,16 +15,41 @@ namespace FinalProject
             public string CardNumber { get; set; }
             public string CardDate { get; set; }
             public string PinCode { get; set; }
+            public decimal Balance { get; set; }
+            public List<Transaction> Transactions { get; set; } = new List<Transaction>();
+
+        }
+
+        public class Transaction
+        {
+            public string Type { get; set; }
+            public decimal Amount { get; set; }
+
+            public DateTime Date { get; set; }
 
         }
 
 
-
         static string filePath = "C:\\Users\\Giviko\\source\\repos\\FinalProject\\FinalProject\\clients.json";
-        public void CheckATM()
+
+        public static List<Client> LoadClients()
+        {
+            if (!File.Exists(filePath)) return new List<Client>();
+            string json = File.ReadAllText(filePath);
+            if (string.IsNullOrWhiteSpace(json)) return new List<Client>();
+            return JsonSerializer.Deserialize<List<Client>>(json);
+        }
+
+        public static void SaveClients(List<Client> clients)
+        {
+            var json = JsonSerializer.Serialize(clients,
+                new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(filePath, json);
+        }
+        public Client CheckATM()
 
         {
-            Functions functions = new Functions();
+
 
 
             List<string> clhistory = new List<string>();
@@ -67,37 +92,12 @@ namespace FinalProject
                 PinCode = cardpincode.ToString()
 
             };
-            jsonsave(client);
+            return client;
         }
 
-        public void jsonsave(Client client)
-        {
+       
 
-
-            List<Client> allClients = new List<Client>();
-            if (!allClients.Any(x => x.CardNumber == client.CardNumber))
-            {
-                allClients.Add(client);
-
-            }
-
-            if (File.Exists(filePath))
-            {
-                string oldJson = File.ReadAllText(filePath);
-
-                if (!string.IsNullOrWhiteSpace(oldJson))
-                {
-                    allClients = JsonSerializer.Deserialize<List<Client>>(oldJson);
-                }
-            }
-
-
-            var json = JsonSerializer.Serialize(allClients,
-                new JsonSerializerOptions { WriteIndented = true });
-
-            File.WriteAllText(filePath, json);
-
-        }
     }
 }
+
 

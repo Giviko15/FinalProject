@@ -1,4 +1,6 @@
-﻿namespace FinalProject
+﻿using static FinalProject.ATMCheck;
+
+namespace FinalProject
 {
     internal class Program
     {
@@ -7,10 +9,10 @@
         {
             Logger.Log("Application Start Successfully");
             ATMCheck myatm = new ATMCheck();
-            myatm.CheckATM();
+            Client current = myatm.CheckATM();
 
 
-            Functions depositamount = new Functions();
+            Functions depositamount = new Functions(current);
             depositamount.ChooseOperation();
 
 
