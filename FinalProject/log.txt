@@ -104,3 +104,10 @@
 24.06.2026 00:04:37 - Application Start Successfully
 24.06.2026 00:04:52 - Application End Successfully
 24.06.2026 00:05:01 - Application Start Successfully
+24.06.2026 00:09:44 - Application Start Successfully
+24.06.2026 00:09:50 - Wrong PINCODE
+24.06.2026 00:09:54 - Application Start Successfully
+24.06.2026 00:10:03 - PINCODE is same
+24.06.2026 00:10:04 - PINCODE is same
+24.06.2026 00:10:05 - PINCODE is same
+24.06.2026 00:10:07 - Application End Successfully

@@ -16,7 +16,7 @@
   {
     "CardNumber": "1234123412341234",
     "CardDate": "11.11.2026 00:00:00",
-    "PinCode": "1234",
+    "PinCode": "1515",
     "Balance": 25400.0,
     "Transactions": [
       {
@@ -113,6 +113,11 @@
         "Type": "CheckBalance",
         "Amount": 25400.0,
         "Date": "2026-06-24T00:04:52.0597728+04:00"
+      },
+      {
+        "Type": "ChangePINCODE",
+        "Amount": 25400.0,
+        "Date": "2026-06-24T00:10:07.182753+04:00"
       }
     ]
   },
