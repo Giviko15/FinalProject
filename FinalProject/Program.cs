@@ -4,19 +4,29 @@ namespace FinalProject
 {
     internal class Program
     {
-        
+
         static void Main(string[] args)
         {
-            Logger.Log("Application Start Successfully");
-            ATMCheck myatm = new ATMCheck();
-            Client current = myatm.CheckATM();
+            try
+            {
+                Logger.Log("Application Start Successfully");
+                ATMCheck myatm = new ATMCheck();
+                Client current = myatm.CheckATM();
 
 
-            Functions depositamount = new Functions(current);
-            depositamount.ChooseOperation();
+                Functions depositamount = new Functions(current);
+                depositamount.ChooseOperation();
 
 
-            Logger.Log("Application Ends Successfully");
+                Logger.Log("Application End Successfully");
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"Error {ex.Message}");
+                Console.WriteLine($"SomethingWrong {ex.Message}");
+
+            }
         }
     }
 }
+

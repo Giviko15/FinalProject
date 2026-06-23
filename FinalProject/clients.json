@@ -16,13 +16,103 @@
   {
     "CardNumber": "1234123412341234",
     "CardDate": "11.11.2026 00:00:00",
-    "PinCode": "1515",
-    "Balance": 1500,
+    "PinCode": "1234",
+    "Balance": 25400.0,
     "Transactions": [
       {
         "Type": "Deposit",
         "Amount": 1500,
         "Date": "2026-06-22T22:29:41.6297093+04:00"
+      },
+      {
+        "Type": "Deposit",
+        "Amount": 1500,
+        "Date": "2026-06-22T22:37:55.5544887+04:00"
+      },
+      {
+        "Type": "Withdraw",
+        "Amount": 1500,
+        "Date": "2026-06-22T23:30:14.6981609+04:00"
+      },
+      {
+        "Type": "CheckBalance",
+        "Amount": 1500,
+        "Date": "2026-06-23T22:56:59.3580594+04:00"
+      },
+      {
+        "Type": "Conversion",
+        "Amount": 1500,
+        "Date": "2026-06-23T22:57:48.2711563+04:00"
+      },
+      {
+        "Type": "Conversion",
+        "Amount": 4000.0,
+        "Date": "2026-06-23T23:00:56.7571783+04:00"
+      },
+      {
+        "Type": "Conversion",
+        "Amount": 4000.0,
+        "Date": "2026-06-23T23:02:10.2967811+04:00"
+      },
+      {
+        "Type": "Conversion",
+        "Amount": 11700.0,
+        "Date": "2026-06-23T23:03:10.3243541+04:00"
+      },
+      {
+        "Type": "Conversion",
+        "Amount": 19400.0,
+        "Date": "2026-06-23T23:05:05.563162+04:00"
+      },
+      {
+        "Type": "Conversion",
+        "Amount": 19400.0,
+        "Date": "2026-06-23T23:06:18.3268392+04:00"
+      },
+      {
+        "Type": "Conversion",
+        "Amount": 22400.0,
+        "Date": "2026-06-23T23:08:26.9332266+04:00"
+      },
+      {
+        "Type": "Conversion",
+        "Amount": 25400.0,
+        "Date": "2026-06-23T23:10:25.6255102+04:00"
+      },
+      {
+        "Type": "CheckBalance",
+        "Amount": 25400.0,
+        "Date": "2026-06-23T23:21:17.2311885+04:00"
+      },
+      {
+        "Type": "ChangePINCODE",
+        "Amount": 0,
+        "Date": "2026-06-23T23:32:27.888271+04:00"
+      },
+      {
+        "Type": "ChangePINCODE",
+        "Amount": 0,
+        "Date": "2026-06-23T23:33:52.7512309+04:00"
+      },
+      {
+        "Type": "ChangePINCODE",
+        "Amount": 25400.0,
+        "Date": "2026-06-23T23:35:06.8912048+04:00"
+      },
+      {
+        "Type": "ChangePINCODE",
+        "Amount": 25400.0,
+        "Date": "2026-06-23T23:59:40.1568754+04:00"
+      },
+      {
+        "Type": "ChangePINCODE",
+        "Amount": 25400.0,
+        "Date": "2026-06-24T00:00:58.2907979+04:00"
+      },
+      {
+        "Type": "CheckBalance",
+        "Amount": 25400.0,
+        "Date": "2026-06-24T00:04:52.0597728+04:00"
       }
     ]
   },
@@ -72,6 +162,13 @@
     "CardNumber": "1231231231231232",
     "CardDate": "11.11.2026 00:00:00",
     "PinCode": "2211",
+    "Balance": 0,
+    "Transactions": []
+  },
+  {
+    "CardNumber": "1231231231231231",
+    "CardDate": "11.11.2026 00:00:00",
+    "PinCode": "1515",
     "Balance": 0,
     "Transactions": []
   }

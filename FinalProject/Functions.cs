@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Transactions;
 using static FinalProject.ATMCheck;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FinalProject
 {
@@ -50,10 +51,10 @@ namespace FinalProject
             {
                 Withdraw();
             }
-            //else if (choose == 3)
-            //{
-            //    last5transaction();
-            //}
+            else if (choose == 3)
+            {
+                last5transaction();
+            }
             else if (choose == 5)
             {
                 ChangePin();
@@ -74,7 +75,7 @@ namespace FinalProject
 
         {
 
-            Console.WriteLine("sheiyvane depoziti ");
+            Console.WriteLine("Enter Amount ");
 
             var depositbalance = decimal.Parse(Console.ReadLine());
 
@@ -96,7 +97,7 @@ namespace FinalProject
 
                 });
 
-                Console.WriteLine("degericxa dzmaoo. fuli gaqvs amdeni: " + currentClient.Balance);
+                Console.WriteLine("Deposit Successfull. Your Amount: " + currentClient.Balance);
 
                 SaveCurrentClient();
 
@@ -107,6 +108,13 @@ namespace FinalProject
         {
 
             Console.WriteLine("Your Balance is :" + currentClient.Balance);
+            currentClient.Transactions.Add(new ATMCheck.Transaction
+            {
+                Type = "CheckBalance",
+                Amount = currentClient.Balance,
+                Date = DateTime.Now
+            });
+            SaveCurrentClient();
         }
 
         public void Withdraw()
@@ -133,27 +141,73 @@ namespace FinalProject
             Console.WriteLine("Enter New PINCODE");
             var newpin = int.Parse(Console.ReadLine());
 
+            while (currentClient.PinCode == newpin.ToString())
+            {
 
+                Console.WriteLine("PINCODE is same, try different one");
+                Logger.Log("PINCODE is same");
+                newpin = int.Parse(Console.ReadLine());
+                
+            }
+
+            
+            
+                
+                currentClient.PinCode = newpin.ToString();
+                currentClient.Transactions.Add(new ATMCheck.Transaction
+                {
+                    Type = "ChangePINCODE",
+                    Amount = currentClient.Balance,
+                    Date = DateTime.Now,
+                });
+
+
+                SaveCurrentClient();
+            Console.WriteLine("PINCODE Changed Successfully");
+
+            
+            
         }
         public void conversion()
         {
             decimal usdRate = 2.7m;
             decimal eurRate = 3.0m;
 
-            Console.WriteLine("Choose conversion type : 1.GEL TO USD 2.GEL TO EUR");
+            Console.WriteLine("Choose conversion type : 1.USD TO GEL 2.EUR TO GEL");
             var chooseconversion = Console.ReadLine();
-            Console.WriteLine("Enter Amount in GEL");
+            Console.WriteLine("Enter Amount: ");
             decimal gel = decimal.Parse(Console.ReadLine());
-            decimal eur = gel / eurRate;
-            decimal usd = gel / usdRate;
+            decimal eur = gel * eurRate;
+            decimal usd = gel * usdRate;
+
             if (chooseconversion == "1")
             {
-                Console.WriteLine($"You got USD: {usd}");
+                currentClient.Balance = currentClient.Balance + usd;
+                Console.WriteLine($"You got USD: {currentClient.Balance}");
+               
             }
             else if (chooseconversion == "2")
             {
-                Console.WriteLine($"You got EUR: {eur}");
+                currentClient.Balance = currentClient.Balance + eur;
+                Console.WriteLine($"You got EUR: {currentClient.Balance}");
+                
             }
+            else
+            {
+                Console.WriteLine("Wrong Choice");
+                Environment.Exit(0);    
+            }
+            
+            
+            
+            currentClient.Transactions.Add(new ATMCheck.Transaction
+            {
+                Type = "Conversion",
+                Amount = currentClient.Balance,
+                Date = DateTime.Now,
+
+            });
+            SaveCurrentClient();
         }
         public void last5transaction()
         {

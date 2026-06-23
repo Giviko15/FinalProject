@@ -47,55 +47,61 @@ namespace FinalProject
             File.WriteAllText(filePath, json);
         }
         public Client CheckATM()
-
         {
-
-
-
             List<string> clhistory = new List<string>();
-
             Console.WriteLine("Enter Card Number");
             var cardnumber = long.Parse(Console.ReadLine());
-
-
             if (cardnumber.ToString().Length != 16)
             {
                 Console.WriteLine("Your Card Number is wrong");
                 Logger.Log("Wrong Card Number");
                 Environment.Exit(0);
-
             }
-
-
             Console.WriteLine("Enter Card Date");
             var carddate = DateTime.Parse(Console.ReadLine());
             if (carddate < DateTime.Today)
             {
-
                 Console.WriteLine("Your Card Date is not valid");
                 Logger.Log("Wrong Date");
                 Environment.Exit(0);
-
             }
             else
             {
                 Console.WriteLine("Your Card Date is valid");
-
-
             }
             Console.WriteLine("Enter Your PINCODE");
             var cardpincode = int.Parse(Console.ReadLine());
+            
             Client client = new Client
             {
                 CardNumber = cardnumber.ToString(),
                 CardDate = carddate.ToString(),
                 PinCode = cardpincode.ToString()
-
             };
+
+            var allClients = LoadClients();
+
+            var existing = allClients.FirstOrDefault(x => x.CardNumber == client.CardNumber);
+            if (existing.PinCode != cardpincode.ToString())
+            {
+                Console.WriteLine("Wrong PINCODE");
+                Logger.Log("Wrong PINCODE");
+                Environment.Exit(0);
+            }
+
+            if (existing != null)
+            {
+                return existing;
+            }
+
+            
+
+            allClients.Add(client);
+            SaveClients(allClients);
             return client;
         }
 
-       
+
 
     }
 }
